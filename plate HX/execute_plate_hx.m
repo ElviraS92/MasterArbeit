@@ -3,13 +3,15 @@ function [result] = execute_plate_hx(x)
 % renaming: parameters for optimization
 parameters.w_ms_1 =x(1);
 parameters.w_ms_3 =x(2);
-
+parameters.t_res_1=x(3);
+parameters.t_res_3=x(3); % same residence time for both phases
 
 % loading material values tables
 load('table_lambda_air.mat');
 load('table_lambda_CaCO3.mat');
 load('table_lambda_hx_pipe.mat');
 
+% call input_values and constants for calcutlation
 con_struct_plate_hx;
 
 % Plate model with molten salt
@@ -167,7 +169,7 @@ calc_values.height_plate=calc_height_plate(calc_values.height_hx_1, parameters.h
  
 calc_values.A_cs_ms_1ch_1=calc_A_cs_ms_1ch(...
     input_values.s_plate_ms,...
-    calc_values.height_hx_1...
+    calc_values.height_plate...
 );
 
 calc_values.A_cs_bed_1ch_1=calc_A_cs_bed_1ch(...
@@ -223,6 +225,8 @@ calc_values.C_p_ms_1=calc_C_p(calc_values.m_cs_ms_1ch_1, calc_values.cp_ms_1);
 calc_values.T_CaO_out_1=calc_T_CaO_out_plates(calc_values.P_2_1, calc_values.T_CaO_in_1, calc_values.T_ms_in_1);
 calc_values.T_ms_out_1=calc_T_ms_out_1_plates(calc_values.P_1_1, calc_values.T_CaO_in_1, calc_values.T_ms_in_1);
 
+calc_values.theta_CaO_out_1=convert_T2theta(calc_values.T_CaO_out_1);
+calc_values.theta_ms_out_1=convert_T2theta(calc_values.T_ms_out_1);
 
 
 fprintf('NUR FÜR EINEN CHANNEL BERECHNET, mit gesamtmassenstrom gleiche T_out! Kürzt sich raus \n')
@@ -479,7 +483,10 @@ calc_values.C_p_ms_3=calc_C_p(calc_values.m_cs_ms_1ch_3, calc_values.cp_ms_3);
 calc_values.T_CaCO3_out_3=calc_T_CaCO3_out_plates(calc_values.P_2_3, calc_values.T_CaCO3_in_3, calc_values.T_ms_in_3);
 calc_values.T_ms_out_3=calc_T_ms_out_3_plates(calc_values.P_1_3, calc_values.T_CaCO3_in_3, calc_values.T_ms_in_3);
 
-result=calc_values.T_CaCO3_out_3;
+calc_values.theta_CaCO3_out_3=convert_T2theta(calc_values.T_CaCO3_out_3);
+calc_values.theta_ms_out_3=convert_T2theta(calc_values.T_ms_out_3);
+
+result=calc_values.theta_CaCO3_out_3;
 
 % heat flow
 % 

@@ -1,5 +1,18 @@
+function [result] = execute_L_valve(x)
 
-% names=fieldnames(A);
+% renaming: parameters for optimization
+
+parameters.w_CaO=x(1);
+parameters.w_CaCO3=x(2);
+parameters.t_res=x(3); 
+
+% loading material values tables
+load('table_lambda_air.mat');
+load('table_lambda_CaCO3.mat');
+
+% call input_values and constants for calcutlation
+con_struct_L_valve;
+
 
 % CONVERSION OF VARIABLES
 % temperatures
@@ -190,6 +203,12 @@ calc_values.T_CaCO3_out= calc_T_CaCO3_out_LV(...
     calc_values.k_hx_pipe...
 );
 
+calc_values.theta_CaO_out=convert_T2theta(calc_values.T_CaO_out);
+calc_values.theta_CaCO3_out=convert_T2theta(calc_values.T_CaCO3_out);
+
+
+result=calc_values.theta_CaCO3_out;
+
 %ANPASSEN
 
 % critical residence time
@@ -201,4 +220,4 @@ calc_values.T_CaCO3_out= calc_T_CaCO3_out_LV(...
 %     calc_values.alpha_WS    ...
 % );
 
-
+end

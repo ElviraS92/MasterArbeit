@@ -7,7 +7,7 @@ constants.R=8314.46;
 input_values.theta_CaO_in_1=900;
 input_values.theta_HTS_in_1=700;  % welche optimale Betriebstemperatur??
 input_values.p=1e5;
-input_values.t_1=5;
+% parameters.t_1=5;
 
 % input_values.n_HTS_1=1000; %1; Parameter!
 % %input_values.m_HTS_1=
@@ -41,7 +41,7 @@ input_values.n_CaO_1=(input_values.m_CaO_1/input_values.rho_p_bed_CaO)/(input_va
 input_values.theta_CaCO3_in_3=650;
 %input_values.theta_HTS_in_3=750; theta_HTS_in_3=theta_HTS_out_1 (keine Wärmeverluste)
 input_values.p=1e5;
-input_values.t_3=5;
+% parameters.t_3=5;
 
 % input_values.n_HTS_3=1000;
 

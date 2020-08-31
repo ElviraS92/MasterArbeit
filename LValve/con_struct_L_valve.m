@@ -7,7 +7,7 @@ input_values.theta_CaCO3_in=650;
 input_values.theta_CaO_in=900;
 input_values.p=1e5;
 
-parameters.t_res=600;
+% parameters.t_res=600;
 
 % phi=0.8, pipe diameter >> particle diameter, Schlünder
 input_values.phi=0.8;
@@ -16,7 +16,7 @@ input_values.phi=0.8;
 % input_values.d_o_hx_pipe=0.2;
 % input_values.length_hx_pipe=10;
 
-input_values.th_hx_pipe=0.03; % [m]
+input_values.th_hx_pipe=0.05; % [m]
 
 input_values.epsilon_w=0.9;
 
