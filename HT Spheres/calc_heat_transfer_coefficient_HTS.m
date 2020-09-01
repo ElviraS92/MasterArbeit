@@ -1,4 +1,4 @@
-function [alpha, alpha_WS, alpha_beddry, alpha_WP, N_c12] = calc_heat_transfer_coefficient_HTS(T, C, R, M, lambda_f, p, c_pg, rho_HTS_bed, rho_HTS_solid, d_HTS, d_p, sigma, epsilon_HTS, epsilon_bed, delta_p, rho_p_bed, lambda_bed, c_bed, t)
+function [alpha, alpha_WS, alpha_beddry, alpha_WP, N_c12] = calc_heat_transfer_coefficient_HTS(T, C, R, M, lambda_f, p, c_pg, rho_HTS_bed, rho_HTS_solid, d_HTS, d_p, sigma, epsilon_HTS, epsilon_bed, delta_p, rho_p_bed, lambda_bed, c_bed, t_res)
 %CALC_ALPHA Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -28,9 +28,11 @@ alpha_rad=calc_alpha_rad(C_wbed, T);
 alpha_WP=calc_alpha_WP(lambda_f, l, d_p, delta_p);
 
 %outputs
-alpha_beddry=calc_alpha_beddry(rho_p_bed, lambda_bed, c_bed, t);
+% critical residence time
 alpha_WS=calc_alpha_WS(phi_HTS, alpha_WP, alpha_rad);
-alpha=calc_alpha(alpha_WS, alpha_beddry);
+t_c=calc_t_c(rho_p_bed, lambda_bed, c_bed, alpha_WS);
+alpha_beddry=calc_alpha_beddry(rho_p_bed, lambda_bed, c_bed, t_res, t_c);
+alpha=calc_alpha(alpha_WS, alpha_beddry, t_res, t_c);
 
 end
 

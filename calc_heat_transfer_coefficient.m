@@ -1,4 +1,4 @@
-function [alpha, alpha_WS, alpha_beddry, alpha_WP] = calc_heat_transfer_coefficient(T, C, R, M, lambda_f, p, c_pg, rho_bed, lambda_bed, c_bed, sigma, epsilon_w, epsilon_bed, d_p, delta, phi, t)
+function [alpha, alpha_WS, alpha_beddry, alpha_WP] = calc_heat_transfer_coefficient(T, C, R, M, lambda_f, p, c_pg, rho_bed, lambda_bed, c_bed, sigma, epsilon_w, epsilon_bed, d_p, delta, phi, t_res)
 %CALC_ALPHA:      alpha 		- overall heat transfer coefficient 						[W/(m^2 K)]
 %          		  alpha_WS      - heat transfer coefficient wall to particle bed            [W/(m^2 K)]
 % 				  alpha_beddry	- heat transfer coefficient of the particle bed             [W/(m^2 K)]
@@ -29,9 +29,6 @@ function [alpha, alpha_WS, alpha_beddry, alpha_WP] = calc_heat_transfer_coeffici
 gamma=calc_gamma(T, C);
 l=calc_l(gamma, R, T, M, lambda_f, p, c_pg);
 
-% heat transfer coefficient for a dry particle bed 
-[alpha_beddry, ~]=calc_alpha_beddry(rho_bed, lambda_bed, c_bed, t); 
-
 % radiation term for  heat transfer coefficient 
 C_wbed=calc_C_wbed(sigma, epsilon_w, epsilon_bed);
 alpha_rad=calc_alpha_rad(C_wbed, T);
@@ -41,6 +38,12 @@ alpha_WP=calc_alpha_WP(lambda_f, l, d_p, delta);
 
 % heat transfer coefficient wall to particle bed
 alpha_WS=calc_alpha_WS(phi, alpha_WP, alpha_rad);
+
+% critical residence time
+t_c=calc_t_c(rho_bed, lambda_bed, c_bed, alpha_WS)
+
+% heat transfer coefficient for a dry particle bed 
+[alpha_beddry, ~]=calc_alpha_beddry(rho_bed, lambda_bed, c_bed, t_res, t_c); 
 
 % total heat transfer coefficient
 alpha=calc_alpha(alpha_WS, alpha_beddry);
