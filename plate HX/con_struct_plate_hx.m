@@ -38,6 +38,8 @@ input_values.s_plate_bed=0.05;
 % input_values.height_plate=1;
 input_values.width_plate=1;
 
+input_values.depth_hx=1;
+
 % input_values.n_plates_row=16;
 % input_values.n_rows=2;
 
