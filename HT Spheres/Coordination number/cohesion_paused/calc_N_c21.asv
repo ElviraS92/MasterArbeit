@@ -1,8 +1,0 @@
-function [outputArg1,outputArg2] = calc_N_c21(inputArg1,inputArg2)
-%CALC_N_C21:    N_c21 - Coordination Number, contacts of large particles to one small particle, here  p1= HTS and p2=p [-] 
-%   Detailed explanation goes here
-
-N_c12=(0.804-1.07*sin(phi_C*pi/180).^2)*((d_p/d_HTS)+1)/(1+(d_HTS/d_p)-sqrt((d_HTS/d_p)*((d_HTS/d_p)+2)));
-
-end
-
