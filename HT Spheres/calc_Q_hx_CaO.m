@@ -1,4 +1,4 @@
-function [Q] = calc_Q_hx_CaO(alpha, T_HTS_in, T_CaO_in, A_hx_tot, t)
+function [Q] = calc_Q_hx_CaO(alpha, T_HTS_in, T_CaO_in, A_hx_tot)
 %CALC_Q_HX_CACO3 Summary of this function goes here
 %   Detailed explanation goes here
 
