@@ -1,4 +1,4 @@
-function [alpha, alpha_WS, alpha_beddry, alpha_WP] = calc_heat_transfer_coefficient(T, C, R, M, lambda_f, p, c_pg, rho_bed, lambda_bed, c_bed, sigma, epsilon_w, epsilon_bed, d_p, delta, phi, t)
+function [alpha_integral, alpha_mean, alpha_WS, alpha_beddry, alpha_WP] = calc_heat_transfer_coefficient(T, C, R, M, lambda_f, p, c_pg, rho_bed, lambda_bed, c_bed, sigma, epsilon_w, epsilon_bed, d_p, delta, phi, t)
 %CALC_ALPHA:      alpha 		- overall heat transfer coefficient 						[W/(m^2 K)]
 %          		  alpha_WS      - heat transfer coefficient wall to particle bed            [W/(m^2 K)]
 % 				  alpha_beddry	- heat transfer coefficient of the particle bed             [W/(m^2 K)]
@@ -43,7 +43,7 @@ alpha_WP=calc_alpha_WP(lambda_f, l, d_p, delta);
 alpha_WS=calc_alpha_WS(phi, alpha_WP, alpha_rad);
 
 % total heat transfer coefficient
-alpha=calc_alpha(alpha_WS, alpha_beddry);
+[alpha_integral, alpha_mean]=calc_alpha(alpha_WS, rho_bed, lambda_bed, c_bed, t);
 
 end
 

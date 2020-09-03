@@ -1,4 +1,4 @@
-function [alpha, alpha_WS, alpha_beddry, alpha_WP, N_c12] = calc_heat_transfer_coefficient_HTS(T, C, R, M, lambda_f, p, c_pg, rho_HTS_bed, rho_HTS_solid, d_HTS, d_p, sigma, epsilon_HTS, epsilon_bed, delta_p, rho_p_bed, lambda_bed, c_bed, t)
+function [alpha_integral, alpha_mean, alpha_WS, alpha_beddry, alpha_WP, N_c12] = calc_heat_transfer_coefficient_HTS(T, C, R, M, lambda_f, p, c_pg, rho_HTS_bed, rho_HTS_solid, d_HTS, d_p, sigma, epsilon_HTS, epsilon_bed, delta_p, rho_p_bed, lambda_bed, c_bed, t)
 %CALC_ALPHA Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -30,7 +30,8 @@ alpha_WP=calc_alpha_WP(lambda_f, l, d_p, delta_p);
 %outputs
 alpha_beddry=calc_alpha_beddry(rho_p_bed, lambda_bed, c_bed, t);
 alpha_WS=calc_alpha_WS(phi_HTS, alpha_WP, alpha_rad);
-alpha=calc_alpha(alpha_WS, alpha_beddry);
+% total heat transfer coefficient
+[alpha_integral, alpha_mean]=calc_alpha(alpha_WS, rho_bed, lambda_bed, c_bed, t);
 
 end
 
