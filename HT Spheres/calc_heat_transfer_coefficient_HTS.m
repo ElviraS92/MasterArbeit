@@ -31,7 +31,7 @@ alpha_WP=calc_alpha_WP(lambda_f, l, d_p, delta_p);
 alpha_beddry=calc_alpha_beddry(rho_p_bed, lambda_bed, c_bed, t);
 alpha_WS=calc_alpha_WS(phi_HTS, alpha_WP, alpha_rad);
 % total heat transfer coefficient
-[alpha_integral, alpha_mean]=calc_alpha(alpha_WS, rho_bed, lambda_bed, c_bed, t);
+[alpha_integral, alpha_mean]=calc_alpha(alpha_WS, rho_p_bed, lambda_bed, c_bed, t);
 
 end
 
