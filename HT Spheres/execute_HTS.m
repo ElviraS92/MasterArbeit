@@ -120,6 +120,9 @@ calc_values.Q_1=calc_Q_hx_CaO(...
 calc_values.V_HTS_tot_1=calc_V_tot(parameters.d_HTS, parameters.n_HTS_1);
 calc_values.m_HTS_1=calc_m(input_values.rho_HTS_solid, calc_values.V_HTS_tot_1);
 
+% calc_values.m_HTS_tot_1=calc_values.m_HTS_1*parameters.t_1;
+% calc_values.m_CaO_t_res=input_values.m_CaO_1*parameters.t_1;
+
 % % outlet temperatures
 
 calc_values.T_HTS_out_1=calc_T_HTS_out_1(...
@@ -272,6 +275,8 @@ calc_values.Q_3=calc_Q_hx_CaCO3(...
 calc_values.V_HTS_tot_3=calc_V_tot(parameters.d_HTS, parameters.n_HTS_3);
 calc_values.m_HTS_3=calc_m(input_values.rho_HTS_solid, calc_values.V_HTS_tot_3);
 
+% calc_values.m_HTS_tot_3=calc_values.m_HTS_3*parameters.t_3;
+% calc_values.m_CaCO3_t_res=input_values.m_CaCO3_3*parameters.t_3;
 
 % % outlet temperatures
 
