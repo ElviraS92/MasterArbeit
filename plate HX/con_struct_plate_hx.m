@@ -16,7 +16,7 @@ input_values.theta_ms_in_1=700;
 input_values.m_CaO_1=20; % [kg/s]
 
 % input_values.t_1=0.2;
-parameters.t_res_1=400;
+% parameters.t_res_1=400;
 
 input_values.rho_p_CaO=1600;
 input_values.rho_p_bed_CaO=850;
@@ -55,7 +55,7 @@ input_values.theta_CaCO3_in_3=650;
 input_values.p=1e5;
 
 % input_values.t_3=0.2;
-parameters.t_res_3=400;
+% parameters.t_res_3=400;
 
 input_values.phi=0.8;
 
